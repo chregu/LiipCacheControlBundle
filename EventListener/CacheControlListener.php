@@ -103,6 +103,10 @@ class CacheControlListener
             if (!empty($options['vary'])) {
                 $response->setVary(array_merge($response->getVary(), $options['vary']), true); //update if already has vary
             }
+
+            if (!empty($options['etag_mode']) && 'md5_on_content' == $options['etag_mode']) {
+                $response->headers->set('ETag',md5($response->getContent()));
+            }
         }
     }
 

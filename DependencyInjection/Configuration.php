@@ -55,6 +55,7 @@ class Configuration implements ConfigurationInterface
                             ->scalarNode('host')->defaultNull()->info('URL host name')->end()
                             ->scalarNode('controller')->defaultNull()->info('controller action name')->end()
                             ->scalarNode('reverse_proxy_ttl')->defaultNull()->end()
+                            ->scalarNode('etag_mode')->defaultNull()->end()
                             ->arrayNode('controls')
                                 ->beforeNormalization()->ifString()->then(function($v) { return preg_split('/\s*,\s*/', $v); })->end()
                                 ->useAttributeAsKey('name')
